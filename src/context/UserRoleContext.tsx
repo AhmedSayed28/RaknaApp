@@ -1,16 +1,27 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useState, useContext } from 'react';
 
-type ContextShape = {
-  role: string
-  setRole: (r: string) => void
+// تعريف نوع البيانات
+type UserRole = 'driver' | 'provider';
+
+interface UserContextType {
+  role: UserRole;
+  setRole: (role: UserRole) => void;
 }
 
-export const UserRoleContext = createContext<ContextShape>({
-  role: 'guest',
-  setRole: () => {},
-})
+const UserContext = createContext<UserContextType | undefined>(undefined);
 
-export const UserRoleProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [role, setRole] = useState<string>('guest')
-  return <UserRoleContext.Provider value={{ role, setRole }}>{children}</UserRoleContext.Provider>
-}
+export const UserProvider = ({ children }: { children: React.ReactNode }) => {
+  const [role, setRole] = useState<UserRole>('driver'); // الحالة الافتراضية
+
+  return (
+    <UserContext.Provider value={{ role, setRole }}>
+      {children}
+    </UserContext.Provider>
+  );
+};
+
+export const useUser = () => {
+  const context = useContext(UserContext);
+  if (!context) throw new Error('useUser must be used within UserProvider');
+  return context;
+};
