@@ -5,7 +5,6 @@ export default function RootLayout() {
   return (
     <UserProvider>
       <Stack screenOptions={{ headerShown: false }}>
-        {/* الشاشات هتتحمل هنا بناءً على المسار */}
         <Stack.Screen name="index" /> 
       </Stack>
     </UserProvider>

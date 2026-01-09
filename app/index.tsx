@@ -20,8 +20,11 @@ export default function Home() {
         title="دخول التطبيق" 
         onPress={() => {
             // هنا هنوجهه للفولدر المناسب
-            // if(role === 'driver') router.push('/(driver)');
-            // else router.push('/(provider)');
+            if (role === 'driver') {
+               router.push('/(driver)/home'); 
+          } else {
+            router.push('/(provider)/dashboard');
+          }
         }} 
       />
     </View>
