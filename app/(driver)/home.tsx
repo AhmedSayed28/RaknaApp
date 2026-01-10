@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, ActivityIndicator } from 'react-native';
 import MapView, { Marker, Callout } from 'react-native-maps';
 import * as Location from 'expo-location';
+import { router } from 'expo-router';
 
 const MOCK_PARKING_SPOTS = [
   { id: '1', title: 'ركنة الدقي الهادئة', price: 15, latitude: 30.0395, longitude: 31.2113 },
@@ -55,12 +56,16 @@ export default function DriverHome() {
             coordinate={{ latitude: spot.latitude, longitude: spot.longitude }}
             pinColor="#0984E3"
           >
-            <Callout>
-              <View style={styles.callout}>
-                <Text style={{ fontWeight: 'bold' }}>{spot.title}</Text>
-                <Text>الساعة: {spot.price} جنيه</Text>
-              </View>
-            </Callout>
+            <Callout onPress={() => router.push({
+                  pathname: '/(driver)/parking-details',
+                  params: { title: spot.title, price: spot.price } // بنبعت بيانات الركنة للشاشة الجديدة
+              })}>
+                <View style={styles.callout}>
+                  <Text style={{ fontWeight: 'bold' }}>{spot.title}</Text>
+                  <Text>الساعة: {spot.price} جنيه</Text>
+                  <Text style={{ color: 'blue', marginTop: 5 }}>اضغط للتفاصيل</Text>
+                </View>
+          </Callout>
           </Marker>
         ))}
       </MapView>

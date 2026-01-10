@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 
 // بيانات وهمية للحجوزات
 const MOCK_BOOKINGS = [
@@ -28,8 +29,20 @@ export default function BookingsScreen() {
               <Text style={styles.priceText}>{item.price}</Text>
             </View>
 
-            <TouchableOpacity style={styles.detailsBtn}>
-              <Text style={styles.detailsBtnText}>عرض التفاصيل</Text>
+            <TouchableOpacity 
+            style={styles.detailsBtn} 
+            onPress={() => {
+                router.push({
+                pathname: '/(driver)/parking-details',
+                params: { 
+                    title: item.place, 
+                    price: item.price, 
+                    status: item.status // السطر ده هو اللي هيعرف الصفحة إن الحجز ده للعرض فقط
+                } 
+                });
+            }}
+            >
+            <Text style={styles.detailsBtnText}>عرض التفاصيل</Text>
             </TouchableOpacity>
           </View>
         )}
@@ -49,4 +62,4 @@ const styles = StyleSheet.create({
   priceText: { fontWeight: 'bold', color: '#0984E3' },
   detailsBtn: { borderTopWidth: 1, borderTopColor: '#F3F4F6', paddingTop: 10 },
   detailsBtnText: { color: '#0984E3', textAlign: 'center', fontWeight: '600' }
-});
+}); 
