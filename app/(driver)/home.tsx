@@ -3,7 +3,6 @@ import { StyleSheet, View, Text, ActivityIndicator } from 'react-native';
 import MapView, { Marker, Callout } from 'react-native-maps';
 import * as Location from 'expo-location';
 
-// 1. بيانات وهمية لأماكن ركنة في القاهرة (Mock Data)
 const MOCK_PARKING_SPOTS = [
   { id: '1', title: 'ركنة الدقي الهادئة', price: 15, latitude: 30.0395, longitude: 31.2113 },
   { id: '2', title: 'جراج المعادي السريع', price: 20, latitude: 29.9602, longitude: 31.2569 },
@@ -14,7 +13,6 @@ export default function DriverHome() {
   const [location, setLocation] = useState<Location.LocationObject | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  // 2. طلب إذن الوصول للموقع عند فتح الشاشة
   useEffect(() => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
@@ -40,25 +38,23 @@ export default function DriverHome() {
 
   return (
     <View style={styles.container}>
-      {/* 3. عرض الخريطة */}
       <MapView
         style={styles.map}
         initialRegion={{
           latitude: location.coords.latitude,
           longitude: location.coords.longitude,
-          latitudeDelta: 0.05, // درجة الزووم
+          latitudeDelta: 0.05, 
           longitudeDelta: 0.05,
         }}
-        showsUserLocation={true} // بيظهر النقطة الزرقاء لمكانك
+        showsUserLocation={true} 
       >
-        {/* 4. رسم الدبابيس (Markers) */}
+        
         {MOCK_PARKING_SPOTS.map((spot) => (
           <Marker
             key={spot.id}
             coordinate={{ latitude: spot.latitude, longitude: spot.longitude }}
             pinColor="#0984E3"
           >
-            {/* Callout هو اللي بيظهر لما تضغط على الدبوس */}
             <Callout>
               <View style={styles.callout}>
                 <Text style={{ fontWeight: 'bold' }}>{spot.title}</Text>

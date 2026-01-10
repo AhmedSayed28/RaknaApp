@@ -34,9 +34,8 @@ export default function EntryPoint() {
         <TouchableOpacity 
           style={styles.mainBtn} 
           onPress={() => {
-            // حل مشكلة الـ Argument type error بوضع المسار الكامل
-            if (role === 'driver') router.push('/(driver)/home');
-            else router.push('/(provider)/dashboard');
+            if (role === 'driver') router.push('/home');
+            else router.push('/dashboard');
           }}
         >
           <Text style={styles.mainBtnText}>دخول كـ {role === 'driver' ? 'سائق' : 'مؤجر'}</Text>
@@ -44,7 +43,7 @@ export default function EntryPoint() {
 
         <TouchableOpacity 
           style={styles.outlineBtn} 
-          onPress={() => router.push('/(auth)/login')}
+          onPress={() => router.push('/login')}
         >
           <Text style={styles.outlineBtnText}>تسجيل الدخول / إنشاء حساب</Text>
         </TouchableOpacity>

@@ -1,5 +1,5 @@
 import { Stack } from 'expo-router';
-import { UserProvider } from '../src/context/UserRoleContext'; // بنستورد المظلة
+import { UserProvider } from '@/src/context/UserRoleContext'; 
 
 export default function RootLayout() {
   return (

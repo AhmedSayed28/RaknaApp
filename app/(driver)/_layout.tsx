@@ -1,5 +1,5 @@
 import { Tabs } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons'; // أيقونات جاهزة من Expo
+import { Ionicons } from '@expo/vector-icons'; 
 
 export default function DriverLayout() {
   return (
@@ -12,8 +12,7 @@ export default function DriverLayout() {
         }} 
       />
       <Tabs.Screen 
-        name="bookings" // هتحتاج تعمل ملف bookings.tsx جوه فولدر driver
-        options={{ 
+        name="bookings"        options={{ 
           title: 'حجوزاتي',
           tabBarIcon: ({ color }) => <Ionicons name="list" size={24} color={color} />
         }} 
