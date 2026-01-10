@@ -1,6 +1,5 @@
 import React, { createContext, useState, useContext } from 'react';
 
-// تعريف نوع البيانات
 type UserRole = 'driver' | 'provider';
 
 interface UserContextType {
@@ -11,7 +10,7 @@ interface UserContextType {
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
-  const [role, setRole] = useState<UserRole>('driver'); // الحالة الافتراضية
+  const [role, setRole] = useState<UserRole>('driver'); 
 
   return (
     <UserContext.Provider value={{ role, setRole }}>
